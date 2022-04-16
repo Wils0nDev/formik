@@ -1,7 +1,4 @@
 import { Formik, Form } from "formik";
-import CheckBox from "./checkBokx";
-import Radio from "./Radio";
-import Select from "./Select";
 import TextInput from './TextInput' //importamos nuestro custom hook
 
 const validate = (values) => {
@@ -22,21 +19,13 @@ const validate = (values) => {
     errors.lastname = "El apellido es muy corto";
   }
 
-  if (values.rol === '0') {
-    errors.rol = "Requerido";
-  } 
-  if ( values.radio === '') {
-    errors.radio = "Requerido";
-  } 
-
-
   return errors; //retorno mis errores
 };
 
 function App() {
   return (
     <Formik
-      initialValues={{ name: "", lastname: "", email: "", rol:"0", radio:""}}
+      initialValues={{ name: "", lastname: "", email: "" }}
       validate={validate}
       onSubmit={(values) => console.log(values)}
     >
@@ -49,26 +38,8 @@ function App() {
           <br />
           <TextInput name="email" type="email" label="Email Name" />
           <br />
-
-          <Select label="Roles" name="rol">
-            <option value='0'>Selecciones un rol</option>
-            <option value='1'>ADMIN</option>
-            <option value='2'>USER</option>
-          </Select>
-
-         <CheckBox  
-            name = "acepto"
-         >
-         Aceptar terminos y condiciones
-         </CheckBox>
-         <Radio name="radio" value="1"  label="valor1"/>
-         <Radio name="radio" value="2" label="valor2" />
-         <Radio name="radio" value="3" label="valor3" />
           <button type="submit">Enviar</button>
-          
-
         </Form>
-
       )}
     </Formik>
   );
